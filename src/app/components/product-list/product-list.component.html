@@ -1,0 +1,46 @@
+<div class="list row"> 
+    <div class="col-md-6">
+      <h4>Products List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let product of products; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveProduct(product, i)"
+        >
+          {{ product.name }}
+        </li>
+      </ul>
+  
+  
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentProduct.id">
+        <h4>Product</h4>
+        <div>
+          <label><strong>Title:</strong></label> {{ currentProduct.name }}
+        </div>
+        <div>
+          <label><strong>Price:</strong></label>
+          {{ currentProduct.price }}
+        </div>
+        <div>
+          <label><strong>Quantity:</strong></label>
+          {{ currentProduct.quantity }}
+        </div>
+        <div>
+          <label><strong>Status:</strong></label>
+          {{ currentProduct.status == 1 ? "Active" : "In Active" }}
+        </div>
+  
+        <a class="badge badge-warning" routerLink="/products/{{ currentProduct.id }}">
+          Edit
+        </a>
+      </div>
+  
+      <div *ngIf="!currentProduct">
+        <br />
+        <p>Please click on a Product...</p>
+      </div>
+    </div>
+  </div>
